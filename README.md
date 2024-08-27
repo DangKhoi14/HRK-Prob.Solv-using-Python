@@ -8,4 +8,9 @@
 <p>
   This repository prefers using Python 🐍 for solving the problems. 
   Please note that I may skip some basic or warm-up problems.
+  
+</p>
+
+<p align="center">
+  <img src="https://images.inc.com/uploaded_files/image/1920x1080/getty_517716450_257586.jpg">
 </p>
