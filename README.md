@@ -9,3 +9,7 @@
   This repository prefers using Python 🐍 for solving the problems. 
   Please note that I may skip some basic or warm-up problems.
 </p>
+
+<p align="center">
+  <img src="https://st3.depositphotos.com/3591429/12857/i/450/depositphotos_128577542-stock-photo-creative-graphic-banner.jpg" alt="Problem-Solving Banner">
+</p>
