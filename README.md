@@ -11,5 +11,5 @@
 </p>
 
 <p align="center">
-  <img src="https://st3.depositphotos.com/3591429/12857/i/450/depositphotos_128577542-stock-photo-creative-graphic-banner.jpg" alt="Problem-Solving Banner">
+  <img src="https://images.inc.com/uploaded_files/image/1920x1080/getty_517716450_257586.jpg">
 </p>
