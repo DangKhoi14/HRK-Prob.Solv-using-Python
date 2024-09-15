@@ -4,6 +4,10 @@
 import os
 
 
+# First function i ever coded had 3 loops
+# I have optimized the algorithm to 1 loop
+# I asked GPT for some ideas for further optimization 
+# by removing unnecessary elements
 def queensAttack(n, k, r_q, c_q, obstacles):
     if n <= 1:
         return 0
