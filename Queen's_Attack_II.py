@@ -1,56 +1,83 @@
 # https://www.hackerrank.com/challenges/queens-attack-2/problem
 
 
+import os
+
+
 def queensAttack(n, k, r_q, c_q, obstacles):
-    accessible_locations = []
-# Sai logic, quét từ queen ra ngoài map
-    for i in range(1, r_q):
-        print(f'{i} - {c_q}')
-        if (r_q - i, c_q) not in obstacles:
-            accessible_locations.append((r_q - i, c_q))
-        else:
-            break
+    if n <= 1:
+        return 0
+    
+    count = 0
+    obstacles_set = set(map(tuple, obstacles))  # Convert obstacles to set for O(1) lookup
 
+    # Track positions in each direction
+    up_r, down_r = r_q + 1, r_q - 1
+    up_c, down_c = c_q + 1, c_q - 1
+    up_left_r, up_right_r = r_q + 1, r_q + 1
+    down_left_r, down_right_r = r_q - 1, r_q - 1
+    up_left_c, up_right_c = c_q - 1, c_q + 1
+    down_left_c, down_right_c = c_q - 1, c_q + 1
 
-    print(accessible_locations)
+    for i in range(1, n):
+        # Check up/down rows
+        if up_r <= n and (up_r, c_q) not in obstacles_set:
+            count += 1
+            up_r += 1
+        if down_r >= 1 and (down_r, c_q) not in obstacles_set:
+            count += 1
+            down_r -= 1
+        
+        # Check left/right columns
+        if up_c <= n and (r_q, up_c) not in obstacles_set:
+            count += 1
+            up_c += 1
+        if down_c >= 1 and (r_q, down_c) not in obstacles_set:
+            count += 1
+            down_c -= 1
 
+        # Check diagonals
+        if up_left_r <= n and up_left_c >= 1 and (up_left_r, up_left_c) not in obstacles_set:
+            count += 1
+            up_left_r += 1
+            up_left_c -= 1
+        if up_right_r <= n and up_right_c <= n and (up_right_r, up_right_c) not in obstacles_set:
+            count += 1
+            up_right_r += 1
+            up_right_c += 1
+        if down_left_r >= 1 and down_left_c >= 1 and (down_left_r, down_left_c) not in obstacles_set:
+            count += 1
+            down_left_r -= 1
+            down_left_c -= 1
+        if down_right_r >= 1 and down_right_c <= n and (down_right_r, down_right_c) not in obstacles_set:
+            count += 1
+            down_right_r -= 1
+            down_right_c += 1
 
-    # for i in range(r_q, n):
-    #     if (i, c_q) not in obstacles:
-    #         accessible_locations.append((i, c_q))
-    #     else:
-    #         break
+    return count
 
-    # for i in range(1, c_q):
-    #     if (r_q, c_q - i) not in obstacles:
-    #         accessible_locations.append((r_q, c_q - i))
-    #     else:
-    #         break
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
-    # for i in range(c_q, n):
-    #     if (r_q, i) not in obstacles:
-    #         accessible_locations.append((r_q, i))
-    #     else:
-    #         break
+    first_multiple_input = input().rstrip().split()
 
-    # for i in range(1, min(r_q, c_q)):
-    #     if (r_q + i, c_q + i) not in obstacles:
-    #         accessible_locations.append((r_q + i, c_q + i))
-    #     else:
-    #         break
+    n = int(first_multiple_input[0])
 
+    k = int(first_multiple_input[1])
 
-    # current = [r_q + 1, c_q + 1]
-    # while max(current) <= n:
-    #     if current not in obstacles:
-    #         accessible_locations.append(current)
-    #         current[0] += 1
-    #         current[1] += 1
-    #     else:
-    #         break
+    second_multiple_input = input().rstrip().split()
 
-    # return len(accessible_locations)
+    r_q = int(second_multiple_input[0])
 
+    c_q = int(second_multiple_input[1])
 
-print(queensAttack(5, 3, 4, 3, [[5, 5], [4, 2], [2, 3]]))
-# print(queensAttack(4, 0, 4, 4, []))
+    obstacles = []
+
+    for _ in range(k):
+        obstacles.append(list(map(int, input().rstrip().split())))
+
+    result = queensAttack(n, k, r_q, c_q, obstacles)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
