@@ -8,7 +8,7 @@ import os
 # I have optimized the algorithm to 1 loop
 # I asked GPT for some ideas for further optimization 
 # by removing unnecessary elements
-def queensAttack(n, k, r_q, c_q, obstacles):
+def queensAttack(n, k, r_q, c_q, obstacles): # MY LOGIC
     if n <= 1:
         return 0
     
@@ -59,6 +59,31 @@ def queensAttack(n, k, r_q, c_q, obstacles):
             down_right_c += 1
 
     return count
+
+# GPT ver
+def queensAttack(n, k, r_q, c_q, obstacles): # GPT's LOGIC
+    # Directions: (row change, col change)
+    directions = [
+        (-1, 0), (1, 0), (0, -1), (0, 1),  # vertical and horizontal
+        (-1, -1), (-1, 1), (1, -1), (1, 1)  # diagonals
+    ]
+    
+    # Set of obstacles for quick lookup
+    obstacle_set = set(map(tuple, obstacles))
+
+    moves = 0
+    
+    for d_row, d_col in directions:
+        # Start in the direction and move until you hit an obstacle or the edge
+        r, c = r_q + d_row, c_q + d_col
+        
+        while 1 <= r <= n and 1 <= c <= n and (r, c) not in obstacle_set:
+            moves += 1
+            r += d_row
+            c += d_col
+
+    return moves
+
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
