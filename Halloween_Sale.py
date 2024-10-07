@@ -6,17 +6,15 @@ import os
 
 def howManyGames(p, d, m, s):
     count = 0
-    while s > 0:
-        if s >= p:
-            count += 1
-            s -= p
-            if p  - d >= m:
-                p -= d
-            else:
-                p = m
-        else:
-            break
-            
+    
+    while s >= p:
+        count += 1
+        s -= p
+        p = max(p - d, m)
+    
+    if p == m:
+        count += s // m
+    
     return count
 
 if __name__ == '__main__':
